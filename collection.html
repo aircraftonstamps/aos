@@ -16,10 +16,10 @@
 	  <a href="index.html" class="w3-bar-item w3-button w3-mobile">Home</a>
 	  <a href="countries.html" class="w3-bar-item w3-button w3-mobile">Countries</a>
 	  <a href="collection.html" class="w3-bar-item w3-button w3-mobile">My collection</a>
+	  <a href="recent_issues.html" class="w3-bar-item w3-button w3-mobile">Recent issues</a>
 	  <div class="w3-dropdown-hover">
 	    <button class="w3-button w3-red">Not yet ready</button>
 	    <div class="w3-dropdown-content w3-bar-block w3-card-4">
-		  <a href="#" class="w3-bar-item w3-button">Recent issues</a>
 		  <a href="#" class="w3-bar-item w3-button">Variants</a>
 		  <a href="#" class="w3-bar-item w3-button">ID'd aircraft</a>
 		  <a href="#" class="w3-bar-item w3-button">Top aircraft</a>
@@ -49,6 +49,7 @@
 	<a href="coll_album2_slideshow.html" class="w3-button w3-border w3-border-blue w3-pale-yellow w3-hover-blue">Album 2 - slideshow</a>
 	</div>
 
+	<div class="w3-container w3-pale-yellow">
 	<h4><strong>Countries in RSTUVWYZ</strong></h2>
 	<a href="coll_album7_list.html" class="w3-button w3-border w3-border-blue w3-pale-yellow w3-hover-blue">Album 7 - list</a>
 	<a href="coll_album7_slideshow.html" class="w3-button w3-border w3-border-blue w3-pale-yellow w3-hover-blue">Album 7 - slideshow</a>
@@ -63,6 +64,36 @@
 	<footer class="w3-container w3-dark-grey">
 	<p>For any comments, drop me a line <a href="mailto:ramanvee@yahoo.com">here</a>.</p>
 	</footer>
+	
+	<script>
+      function includeHTML() {
+        var z, i, elmnt, file, xhttp;
+        /*loop through a collection of all HTML elements:*/
+        z = document.getElementsByTagName("*");
+        for (i = 0; i < z.length; i++) {
+          elmnt = z[i];
+          /*search for elements with a certain atrribute:*/
+          file = elmnt.getAttribute("w3-include-html");
+          if (file) {
+            /*make an HTTP request using the attribute value as the file name:*/
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4) {
+                if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                /*remove the attribute, and call this function once more:*/
+                elmnt.removeAttribute("w3-include-html");
+                includeHTML();
+              }
+            } 
+            xhttp.open("GET", file, true);
+            xhttp.send();
+            /*exit the function:*/
+            return;
+          }
+        }
+      }
+	</script>
 	
   </body>
 </html>
